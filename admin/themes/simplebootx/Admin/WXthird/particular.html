@@ -1,0 +1,70 @@
+<admintpl file="header"/>
+</head>
+<body>
+<div class="wrap js-check-wrap">
+    <div class="tab-content">
+        <table class="table">
+            <tr>
+                <td width="150">appid</td>
+                <td>{$wechat_config.authorizer_appid}</td>
+            </tr>
+            <tr>
+                <td>类型</td>
+                <td>{$wechat_config['type']}</td>
+            </tr>
+            <tr>
+                <td>头像</td>
+                <td><img src="{$wechat_config.head_img}" width="100"></td>
+            </tr>
+            <tr>
+                <td>昵称</td>
+                <td>{$wechat_config.nick_name}</td>
+            </tr>
+            <tr>
+                <td>主体名称</td>
+                <td>{$wechat_config.principal_name}</td>
+            </tr>
+            <tr>
+                <td>帐号介绍</td>
+                <td>{$wechat_config.signature}</td>
+            </tr>
+            <tr>
+                <td>创建时间</td>
+                <td>{$wechat_config.create_at}</td>
+            </tr>
+            <tr>
+                <td>二维码</td>
+                <td>
+                    <img src="http://read.html5.qq.com/image?src=forum&q=5&r=0&imgflag=7&imageUrl={$wechat_config.qrcode_url}"
+                         width="150"/>
+                </td>
+            </tr>
+            <if condition="$wechat_config['miniprograminfo']">
+                <tr>
+                    <td>体验二维码</td>
+                    <td>
+                        <img src="{$qrcode}" width="150"/>
+                    </td>
+                </tr>
+            </if>
+        </table>
+    </div>
+    <div class="form-actions">
+        <switch name="auditstatus.status">
+            <case value="0">
+                小程序发布 审核成功
+            </case>
+            <case value="1">
+                小程序发布 审核失败{$auditstatus['reason']}
+            </case>
+            <case value="2">小程序发布 审核中</case>
+            <default/>
+            未发布审核
+        </switch>
+    </div>
+</div>
+<script src="__PUBLIC__/js/common.js"></script>
+<script>
+</script>
+</body>
+</html>

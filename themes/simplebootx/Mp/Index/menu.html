@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{$site_name}</title>
+    <meta name="keywords" content="{$site_seo_keywords}"/>
+    <meta name="description" content="{$site_seo_description}">
+    <meta name="author" content="ThinkCMF">
+    <meta name="referrer" content="never">
+    <tc_include file="Public:head"/>
+    <style>
+        .fa {
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body class="body-white" id="top">
+<tc_include file="Public:nav"/>
+
+<div class="container tc-main">
+    <div class="row">
+        <div class="span2">
+            <tc_include file="Public:mpnav"/>
+        </div>
+        <div class="span10">
+            <div id="Alert" class="alert alert-danger" style="display: none;">
+                <a href="#" class="close" data-dismiss="alert">&times;</a>
+                <div id="AlertMsg"></div>
+            </div>
+
+            <div class="tab-content" id="WeChatMenu">
+                <i class="fa fa-plus" aria-hidden="true" onclick="WeChatMenu.addLevel1()">添加一级菜单</i>
+                <div v-for="(v, i) in menu">
+                    <input type="text" v-model="v.name"/>
+                    <a href="#myModal" role="button" class="fa fa-cogs" data-toggle="modal"
+                       v-show="v.sub_button.length==0" :onclick="'WeChatMenu.cogs('+i+',-1)'">设置</a>
+                    <i class="fa fa-plus" aria-hidden="true" :onclick="'WeChatMenu.addLevel2('+i+')'">添加子菜单</i>
+                    <i class="fa fa-trash" aria-hidden="true" :onclick="'WeChatMenu.delLevel1('+i+')'">删除</i>
+                    <div v-for="(v2,i2) in v.sub_button">
+                        > > > <input type="text" v-model="v2.name"/>
+                        <a href="#myModal" role="button" class="fa fa-cogs" data-toggle="modal"
+                           :onclick="'WeChatMenu.cogs('+i+','+i2+')'">设置</a>
+                        <i class="fa fa-trash" aria-hidden="true" :onclick="'WeChatMenu.delLevel2('+i+','+i2+')'">删除</i>
+                    </div>
+                </div>
+                <div class="controls">
+                    <button type="submit" class="btn btn-info" onclick="WeChatMenu.save()">保存</button>
+                </div>
+                <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                     aria-hidden="true">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <h3 id="myModalLabel">菜单设置</h3>
+                    </div>
+                    <div class="modal-body">
+                        <table class="table">
+                            <tr>
+                                <td>菜单类型</td>
+                                <td>
+                                    <select id="cacheType" v-model="cache.type">
+                                        <option>click</option>
+                                        <option>view</option>
+                                        <option>scancode_push</option>
+                                        <option>scancode_waitmsg</option>
+                                        <option>pic_sysphoto</option>
+                                        <option>pic_photo_or_album</option>
+                                        <option>pic_weixin</option>
+                                        <option>location_select</option>
+                                        <option>media_id</option>
+                                        <option>view_limited</option>
+                                        <option>miniprogram</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr v-if="cache.type=='click'">
+                                <td>key</td>
+                                <td><input type="text" v-model="cache.key"/></td>
+                            </tr>
+                            <tr v-if="cache.type=='view'||cache.type=='miniprogram'">
+                                <td>url</td>
+                                <td><input type="text" v-model="cache.url"/></td>
+                            </tr>
+                            <tr v-if="cache.type=='media_id'||cache.type=='view_limited'">
+                                <td>media_id</td>
+                                <td><input type="text" v-model="cache.media_id"/></td>
+                            </tr>
+                            <tr v-if="cache.type=='miniprogram'">
+                                <td>appid</td>
+                                <td><input type="text" v-model="cache.appid"/></td>
+                            </tr>
+                            <tr v-if="cache.type=='miniprogram'">
+                                <td>pagepath</td>
+                                <td><input type="text" v-model="cache.pagepath"/></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-primary" data-dismiss="modal" aria-hidden="true">确定
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <tc_include file="Public:footer"/>
+</div>
+
+<script>
+    var WeChatMenuData = JSON.parse('{$WeChatMenuJSON}');
+    var WeChatMenu = new Vue({
+        el: '#WeChatMenu',
+        data: {
+            menu: WeChatMenuData,
+            cache: {}
+        },
+        methods: {
+            save: function () {
+                $.ajax({
+                    type: "POST",
+                    url: "",
+                    dataType: "json",
+                    data: {
+                        WeChatMenuJSON: JSON.stringify(this.menu)
+                    },
+                    success: function (res) {
+                        if (res.errcode == 0) {
+                            alert("保存成功");
+                        } else {
+                            $('#AlertMsg').html("[" + res.errcode + "]" + res.errmsg);
+                            $('#Alert').show();
+                        }
+                    }
+                });
+            },
+            cogs: function (i, i2) {
+                if (i2 == -1) {
+                    this.cache = this.menu[i];
+                } else {
+                    this.cache = this.menu[i].sub_button[i2];
+                }
+            },
+            addLevel1: function () {
+                if (this.menu.length < 3) {
+                    this.menu.push({
+                        type: '',
+                        name: '',
+                        sub_button: []
+                    });
+                } else {
+                    $('#AlertMsg').html('一级菜单最多三个');
+                    $('#Alert').show();
+                }
+            },
+            addLevel2: function (i) {
+                if (this.menu[i].sub_button.length < 5) {
+                    this.menu[i].sub_button.push({
+                        type: '',
+                        name: ''
+                    });
+                } else {
+                    $('#AlertMsg').html('二级菜单最多五个');
+                    $('#Alert').show();
+                }
+            },
+            delLevel1: function (i) {
+                this.menu.splice(i, 1);
+            },
+            delLevel2: function (i, i2) {
+                this.menu[i].sub_button.splice(i2, 1);
+            }
+        }
+    });
+
+</script>
+<tc_include file="Public:scripts"/>
+</body>
+</html>

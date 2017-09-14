@@ -1,0 +1,33 @@
+<admintpl file="header" />
+</head>
+<body>
+	<div class="wrap">
+		<form method="post" class="js-ajax-form" action="{:U('setting_post')}">
+			<table width="100%" cellpadding="2" cellspacing="2">
+				<tbody>
+					<tr>
+						<td width="140">AppID</td>
+						<td><input type="text" name="AppID" value="{$WXthird.AppID}" /></td>
+					</tr>
+					<tr>
+						<td>AppSecret</td>
+						<td><input type="text" name="AppSecret" value="{$WXthird.AppSecret}" /></td>
+					</tr>
+					<tr>
+						<td>公众号消息校验Token</td>
+						<td><input type="text" name="Token" value="{$WXthird.Token}" /></td>
+					</tr>
+					<tr>
+						<td>公众号消息加解密Key</td>
+						<td><input type="text" name="Key" value="{$WXthird.Key}" /></td>
+					</tr>
+				</tbody>
+			</table>
+			<div class="form-actions">
+				<button type="submit" class="btn btn-primary js-ajax-submit">{:L('SAVE')}</button>
+			</div>
+		</form>
+	</div>
+	<script src="__PUBLIC__/js/common.js"></script>
+</body>
+</html>

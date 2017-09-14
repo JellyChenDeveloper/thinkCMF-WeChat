@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{$site_name}</title>
+    <meta name="keywords" content="{$site_seo_keywords}"/>
+    <meta name="description" content="{$site_seo_description}">
+    <meta name="author" content="ThinkCMF">
+    <meta name="referrer" content="never">
+    <tc_include file="Public:head"/>
+    <link href="/public/js/artDialog/skins/default.css" rel="stylesheet"/>
+    <style>
+        form .input-order {
+            margin-bottom: 0px;
+            padding: 3px;
+            width: 40px;
+        }
+    </style>
+</head>
+
+<body class="body-white" id="top">
+<tc_include file="Public:nav"/>
+
+<div class="container tc-main">
+    <div class="row">
+        <div class="span2">
+            <tc_include file="V1:nav"/>
+        </div>
+        <div class="span10">
+            <div class="wrap">
+                <ul class="nav nav-tabs">
+                    <li><a href="{:U('Gallery/index')}">图片管理</a></li>
+                    <li>
+                        <a href="{:U('Gallery/add')}">添加图片</a>
+                    </li>
+                    <li class="active"><a href="{:U('GalleryTerm/index')}">分类管理</a></li>
+                    <li><a href="{:U('GalleryTerm/add')}">添加分类</a></li>
+                </ul>
+                <form method="post" class="js-ajax-form" action="{:U('listorders')}">
+                    <div class="table-actions">
+                        <button type="submit" class="btn btn-primary btn-small js-ajax-submit">{:L('SORT')}</button>
+                    </div>
+                    <table class="table table-hover table-bordered table-list">
+                        <thead>
+                        <tr>
+                            <th width="50">排序</th>
+                            <th width="50">ID</th>
+                            <th>图片</th>
+                            <th>分类名称</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {$taxonomys}
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <th width="50">排序</th>
+                            <th width="50">ID</th>
+                            <th>图片</th>
+                            <th>分类名称</th>
+                            <th>操作</th>
+                        </tr>
+                        </tfoot>
+                    </table>
+                    <div class="table-actions">
+                        <button type="submit" class="btn btn-primary btn-small js-ajax-submit">{:L('SORT')}</button>
+                    </div>
+                </form>
+            </div>
+            <script src="__PUBLIC__/js/common.js"></script>
+        </div>
+    </div>
+
+    <tc_include file="Public:footer"/>
+
+</div>
+<!-- /container -->
+
+<tc_include file="Public:scripts"/>
+</body>
+</html>

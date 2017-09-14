@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+<script>
+    var wx_config = JSON.parse('{$wx_config}');
+    wx.config(wx_config);
+    wx.ready(function () {
+        wx.addCard({
+            cardList: [
+                {
+                    cardId: 'pDF3iY9tv9zCGCj4jTXFOo1DxHdo',
+                    cardExt: '{"code": "", "openid": "", "timestamp": "1418301401", "signature":"f6628bf94d8e56d56bfa6598e798d5bad54892e5"}'
+                }
+            ],
+            success: function (res) {
+                alert('已添加卡券：' + JSON.stringify(res.cardList));
+            },
+            cancel: function (res) {
+                alert(JSON.stringify(res))
+            }
+        });
+    });
+</script>
+</body>
+</html>

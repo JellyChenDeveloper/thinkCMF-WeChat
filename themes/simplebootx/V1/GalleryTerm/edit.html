@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{$site_name}</title>
+    <meta name="keywords" content="{$site_seo_keywords}"/>
+    <meta name="description" content="{$site_seo_description}">
+    <meta name="author" content="ThinkCMF">
+    <meta name="referrer" content="never">
+    <tc_include file="Public:head"/>
+    <link href="/public/js/artDialog/skins/default.css" rel="stylesheet"/>
+
+</head>
+
+<body class="body-white" id="top">
+<tc_include file="Public:nav"/>
+
+<div class="container tc-main">
+    <div class="row">
+        <div class="span2">
+            <tc_include file="V1:nav"/>
+        </div>
+        <div class="span10">
+            <div class="wrap js-check-wrap">
+                <ul class="nav nav-tabs">
+                    <li><a href="{:U('Gallery/index')}">图片管理</a></li>
+                    <li>
+                        <a href="{:U('Gallery/add')}">添加图片</a>
+                    </li>
+                    <li><a href="{:U('GalleryTerm/index')}">分类管理</a></li>
+                    <li><a href="{:U('GalleryTerm/add')}">添加分类</a></li>
+                    <li class="active"><a href="#">编辑分类</a></li>
+                </ul>
+                <form class="form-horizontal js-ajax-form" action="{:U('edit_post')}" method="post">
+                    <input type="hidden" name="term_id" value="{$data.term_id}"/>
+                    <div class="tabbable">
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="A">
+                                <fieldset>
+                                    <div class="control-group">
+                                        <label class="control-label">上级</label>
+                                        <div class="controls">
+                                            <select name="parent">
+                                                <option value="0">作为一级分类</option>
+                                                {$terms_tree}
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        <label class="control-label">分类名称</label>
+                                        <div class="controls">
+                                            <input type="text" name="name" value="{$data.name}"><span
+                                                class="form-required">*</span>
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        <label class="control-label">描述</label>
+                                        <div class="controls">
+                                            <textarea name="description" rows="5"
+                                                      cols="57">描述</textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="control-group">
+                                        <label class="control-label">分类图片</label>
+                                        <div class="controls">
+                                            <div>
+                                                <input type="hidden" name="thumb" id="thumb"
+                                                       value="{$data.thumb|default=''}">
+                                                <a href="javascript:upload_one_image('图片上传','#thumb');">
+                                                    <if condition="empty($data['thumb'])">
+                                                        <img src="__TMPL__Public/assets/images/default-thumbnail.png"
+                                                             id="thumb-preview" width="135" style="cursor: hand"/>
+                                                        <else/>
+                                                        <img src="{:sp_get_image_preview_url($data['thumb'])}"
+                                                             id="thumb-preview" width="135"
+                                                             style="cursor: hand;max-width: 100%;"/>
+                                                    </if>
+                                                </a>
+                                                <input type="button" class="btn btn-small"
+                                                       onclick="$('#thumb-preview').attr('src','__TMPL__Public/assets/images/default-thumbnail.png');$('#thumb').val('');return false;"
+                                                       value="取消图片">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <button class="btn btn-primary js-ajax-submit" type="submit">{:L('SAVE')}</button>
+                        <a class="btn" href="javascript:history.back(-1);">{:L('BACK')}</a>
+                    </div>
+                </form>
+            </div>
+            <script type="text/javascript" src="__PUBLIC__/js/common.js"></script>
+        </div>
+    </div>
+
+    <tc_include file="Public:footer"/>
+
+</div>
+<!-- /container -->
+
+<tc_include file="Public:scripts"/>
+</body>
+</html>

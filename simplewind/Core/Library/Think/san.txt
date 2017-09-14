@@ -1,0 +1,85 @@
+Wechat\WechatReceive::__set_state(array(
+   '_text_filter' => true,
+   '_receive' => 
+  array (
+    'ToUserName' => 'gh_762b10ef967a',
+    'FromUserName' => 'o41eoxBJSqH3uoYPtECAw0lFEYYU',
+    'CreateTime' => '1498634749',
+    'MsgType' => 'text',
+    'Content' => '88',
+    'MsgId' => '6436587236029166267',
+  ),
+   'token' => 'weihankeji',
+   'encodingAesKey' => 'gT7TOVMSW9u8bF3UQKRnzHAnBVMzSSYtnFtVNTWqsCR',
+   'encrypt_type' => 'aes',
+   'appid' => 'wx1a98e35a2d315f50',
+   'appsecret' => 'bc633200809f68bee8d6cb17f7bb032d',
+   'access_token' => NULL,
+   'postxml' => '<xml><ToUserName><![CDATA[gh_762b10ef967a]]></ToUserName>
+<FromUserName><![CDATA[o41eoxBJSqH3uoYPtECAw0lFEYYU]]></FromUserName>
+<CreateTime>1498634749</CreateTime>
+<MsgType><![CDATA[text]]></MsgType>
+<Content><![CDATA[88]]></Content>
+<MsgId>6436587236029166267</MsgId>
+</xml>',
+   '_msg' => NULL,
+   'errCode' => 0,
+   'errMsg' => '',
+   'config' => 
+  array (
+    'cachepath' => '/www/web2/xcx/public_html/data/runtime/Cache/Data/',
+    'component_appid' => 'wxfd828a44135fa7ef',
+    'component_appsecret' => 'bc633200809f68bee8d6cb17f7bb032d',
+    'component_token' => 'weihankeji',
+    'component_encodingaeskey' => 'gT7TOVMSW9u8bF3UQKRnzHAnBVMzSSYtnFtVNTWqsCR',
+    'appid' => 'wx1a98e35a2d315f50',
+    'component_verify_ticket' => 'ticket@@@mTekDZoY04xmWEwr5zRPrIrc5ARBwHiH_T5z9_fxlaLEIY_I9borB9abbp4Xi4I-z5-aeZ7Z5WXDodLKGd3Kaw',
+    'token' => 'weihankeji',
+    'appsecret' => 'bc633200809f68bee8d6cb17f7bb032d',
+    'encodingaeskey' => 'gT7TOVMSW9u8bF3UQKRnzHAnBVMzSSYtnFtVNTWqsCR',
+  ),
+   '_retry' => false,
+))Wechat\WechatReceive::__set_state(array(
+   '_text_filter' => true,
+   '_receive' => 
+  array (
+    'ToUserName' => 'gh_762b10ef967a',
+    'FromUserName' => 'o41eoxBJSqH3uoYPtECAw0lFEYYU',
+    'CreateTime' => '1498634895',
+    'MsgType' => 'event',
+    'Event' => 'VIEW',
+    'EventKey' => 'http://pin.weihankeji.com/',
+    'MenuId' => '421560310',
+  ),
+   'token' => 'weihankeji',
+   'encodingAesKey' => 'gT7TOVMSW9u8bF3UQKRnzHAnBVMzSSYtnFtVNTWqsCR',
+   'encrypt_type' => 'aes',
+   'appid' => 'wx1a98e35a2d315f50',
+   'appsecret' => 'bc633200809f68bee8d6cb17f7bb032d',
+   'access_token' => NULL,
+   'postxml' => '<xml><ToUserName><![CDATA[gh_762b10ef967a]]></ToUserName>
+<FromUserName><![CDATA[o41eoxBJSqH3uoYPtECAw0lFEYYU]]></FromUserName>
+<CreateTime>1498634895</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[VIEW]]></Event>
+<EventKey><![CDATA[http://pin.weihankeji.com/]]></EventKey>
+<MenuId>421560310</MenuId>
+</xml>',
+   '_msg' => NULL,
+   'errCode' => 0,
+   'errMsg' => '',
+   'config' => 
+  array (
+    'cachepath' => '/www/web2/xcx/public_html/data/runtime/Cache/Data/',
+    'component_appid' => 'wxfd828a44135fa7ef',
+    'component_appsecret' => 'bc633200809f68bee8d6cb17f7bb032d',
+    'component_token' => 'weihankeji',
+    'component_encodingaeskey' => 'gT7TOVMSW9u8bF3UQKRnzHAnBVMzSSYtnFtVNTWqsCR',
+    'appid' => 'wx1a98e35a2d315f50',
+    'component_verify_ticket' => 'ticket@@@mTekDZoY04xmWEwr5zRPrIrc5ARBwHiH_T5z9_fxlaLEIY_I9borB9abbp4Xi4I-z5-aeZ7Z5WXDodLKGd3Kaw',
+    'token' => 'weihankeji',
+    'appsecret' => 'bc633200809f68bee8d6cb17f7bb032d',
+    'encodingaeskey' => 'gT7TOVMSW9u8bF3UQKRnzHAnBVMzSSYtnFtVNTWqsCR',
+  ),
+   '_retry' => false,
+))

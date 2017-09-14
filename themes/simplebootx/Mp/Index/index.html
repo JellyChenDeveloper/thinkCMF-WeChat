@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{$site_name}</title>
+    <meta name="keywords" content="{$site_seo_keywords}"/>
+    <meta name="description" content="{$site_seo_description}">
+    <meta name="author" content="ThinkCMF">
+    <meta name="referrer" content="never">
+    <tc_include file="Public:head"/>
+</head>
+
+<body class="body-white" id="top">
+<tc_include file="Public:nav"/>
+
+<div class="container tc-main">
+    <div class="row">
+        <div class="span2">
+            <tc_include file="Public:mpnav"/>
+        </div>
+        <div class="span10">
+            <div class="tab-content">
+                <table class="table">
+                    <tr>
+                        <td width="150">appid</td>
+                        <td>{$wechat_config.authorizer_appid}</td>
+                    </tr>
+                    <tr>
+                        <td>类型</td>
+                        <td>{$wechat_config['type']}</td>
+                    </tr>
+                    <tr>
+                        <td>头像</td>
+                        <td><img src="{$wechat_config.head_img}" width="100"></td>
+                    </tr>
+                    <tr>
+                        <td>昵称</td>
+                        <td>{$wechat_config.nick_name}</td>
+                    </tr>
+                    <tr>
+                        <td>主体名称</td>
+                        <td>{$wechat_config.principal_name}</td>
+                    </tr>
+                    <tr>
+                        <td>帐号介绍</td>
+                        <td>{$wechat_config.signature}</td>
+                    </tr>
+                    <tr>
+                        <td>创建时间</td>
+                        <td>{$wechat_config.create_at}</td>
+                    </tr>
+                    <tr>
+                        <td>二维码</td>
+                        <td>
+                            <img src="http://read.html5.qq.com/image?src=forum&q=5&r=0&imgflag=7&imageUrl={$wechat_config.qrcode_url}"
+                                 width="100"/>
+                        </td>
+                    </tr>
+
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <tc_include file="Public:footer"/>
+
+</div>
+<!-- /container -->
+
+<tc_include file="Public:scripts"/>
+</body>
+</html>

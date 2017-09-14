@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{$site_name}</title>
+    <meta name="keywords" content="{$site_seo_keywords}"/>
+    <meta name="description" content="{$site_seo_description}">
+    <meta name="author" content="ThinkCMF">
+    <meta name="referrer" content="never">
+    <tc_include file="Public:head"/>
+</head>
+
+<body class="body-white" id="top">
+<tc_include file="Public:nav"/>
+
+<div class="container tc-main">
+    <div class="row">
+        <div class="span3">
+            <tc_include file="Public:usernav"/>
+        </div>
+        <div class="span9">
+            <div class="tabs">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="{:U('')}"><i class="fa fa-star"></i>我的服务</a></li>
+                    <li class=""><a href="{:U('add')}"><i class="fa fa-star"></i>添加服务</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane active" id="one">
+                        <table class="table table-bordered table-striped table-hover">
+                            <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>类型</th>
+                                <th width="50">头像</th>
+                                <th>昵称</th>
+                                <th>创建时间</th>
+                                <th width="80">二维码</th>
+                                <th>操作</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <foreach name="list" item="vo">
+                                <tr>
+                                    <td>{$vo.id}</td>
+                                    <td>{$vo['type']}</td>
+                                    <td><img src="{$vo.head_img}" alt=""></td>
+                                    <td>{$vo.nick_name}<br>{$vo.principal_name}</td>
+                                    <td>{$vo['create_at']}</td>
+                                    <td><img
+                                            src="http://read.html5.qq.com/image?src=forum&q=5&r=0&imgflag=7&imageUrl={$vo.qrcode_url}"/>
+                                    </td>
+                                    <td>
+                                        <a href="{:U('/Wechat/WechatService/index',array('authorizer_appid'=>$vo['authorizer_appid']))}">管理</a>
+                                    </td>
+                                </tr>
+                            </foreach>
+                            </tbody>
+                        </table>
+                        <a href="https://jq.qq.com/?_wv=1027&k=4C5c7wt ">有问题加群:658810034</a>
+                        <div class="pagination">
+                            <ul>{$page}</ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <tc_include file="Public:footer"/>
+
+</div>
+<!-- /container -->
+
+<tc_include file="Public:scripts"/>
+</body>
+</html>
